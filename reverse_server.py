@@ -9,7 +9,6 @@ import socket
 
 HOST, PORT = "127.0.0.1", 50011
 
-
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -26,8 +25,10 @@ def main():
             # TODO: send the message back REVERSED. `data` is bytes, e.g. b"hello".
             #   Turn it into text, reverse it, and send the reversed text back with
             #   conn.sendall(...). Example: "hello" -> "olleh".
-            pass
 
+            message = data.decode()
+            reversed_message = message[::-1]
+            conn.sendall(reversed_message.encode())
 
 if __name__ == "__main__":
     main()
